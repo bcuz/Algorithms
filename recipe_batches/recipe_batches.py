@@ -17,7 +17,6 @@ def recipe_batches(recipe, ingredients):
 
   # deduct each ingredient separately, 
   # then take the minimum amount of all of them
-  # frequency counter.
   freq = {}
   for key in ingredients_keys:
     while ingredients[key] >= recipe[key]:
@@ -27,6 +26,9 @@ def recipe_batches(recipe, ingredients):
         freq[key] = 1
       ingredients[key] -= recipe[key]
 
+  # the lowest amount of batches for a specific 
+  # ingredient will be the lowest amount of batches
+  # for the set of ingredients
   lowest = math.inf
   for val in freq.values():
     if val < lowest:
