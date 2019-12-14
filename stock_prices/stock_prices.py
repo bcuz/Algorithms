@@ -3,8 +3,22 @@
 import argparse
 
 def find_max_profit(prices):
-  pass
+  # technically o(n)
 
+  # find lowest value that isnt the last index
+  pricesWithoutLast = prices[:-1]
+
+  lowest = min(pricesWithoutLast)
+
+  indexOfLowest = prices.index(lowest)
+
+  # get prices to the right of our lowest
+  searchSpace = prices[indexOfLowest+1:]
+
+  # find the highest value in searchSpace
+  highest = max(searchSpace)
+
+  return highest - lowest
 
 if __name__ == '__main__':
   # This is just some code to accept inputs from the command line

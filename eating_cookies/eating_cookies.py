@@ -6,7 +6,31 @@ import sys
 # a solution that is more efficient than the naive 
 # recursive solution
 def eating_cookies(n, cache=None):
-  pass
+  if n <= 1:
+    return 1
+  elif n == 2:
+    return 2
+  elif n == 3:
+    return 4
+  elif cache and cache[n] > 0:
+    return cache[n]
+  else:
+    if not cache:
+      cache = {i: 0 for i in range(n+1)}
+
+  cache[n] = eating_cookies(n - 3, cache) + eating_cookies(n - 2, cache) + eating_cookies( n - 1, cache)
+  return cache[n]
+
+# print(eating_cookies(0))
+
+# 4 cookie brainstorm
+# He can eat 1 cookie at a time 4 times
+# He can eat 1 cookie, 1 cookie, then 2 cookies
+# He can eat 1 cookie, 2 cookies, then 1 cookies
+# He can eat 2 cookie, 1 cookies, then 1 cookies
+# He can eat 2 cookies, then 2 cookies
+# He can eat 1 cookies, then 3 cookies
+# He can eat 3 cookies, then 1 cookies
 
 if __name__ == "__main__":
   if len(sys.argv) > 1:
